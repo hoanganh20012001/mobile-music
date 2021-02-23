@@ -5,10 +5,10 @@
 }
 
 :root {
-    --color-icon: #eb003e;
+    --color-icon: #ff4b78;
     --color-pause: #ee2565;
     --color-heading: #04041a;
-    --color-text: #a8a5cb;
+    --color-text: #a09dc4;
     --color-icon-control: #8884b7;
     --color-border-image: #f02a71;
     --color-bgc-heading: #14103b;
@@ -48,10 +48,11 @@ button {
 }
 
 .color-icon {
-    color: var(--color-icon)
+    color: var(--color-icon);
 }
 
 i {
+    color: var(--color-text);
     font-size: 2rem;
     cursor: pointer;
 }
@@ -130,7 +131,7 @@ i {
     }
 
     .display-control__gruop-icon i {
-        color: var(--color-text);
+        color: var(--color-icon-control);
     }
 
     .display-control__img {

@@ -38,19 +38,19 @@ const app = {
             items[index].style.backgroundColor = '#fff'
         })
         
-        items[indexAudio].style.backgroundColor = '#f02a71'
+        items[indexAudio].style.backgroundColor = '#d1ceff'
         const audio = audios[indexAudio]
         audio.play()
         audio.currentTime = 0
+
         // auto next audio
         audio.onended = app.next
         // time up date
-
         audio.ontimeupdate = function() {
             if (audio.duration) {
-                let length = audio.currentTime / audio.duration;
-                // $(``).style.width = length*100 + "%"
                 process.value = audio.currentTime * (100/ audio.duration)
+                // let length = audio.currentTime / audio.duration;
+                // $(``).style.width = length*100 + "%"
                 let curmins = Math.floor(audio.currentTime / 60)
                 let cursecs = Math.floor(audio.currentTime - curmins*60)
                 let durmins = Math.floor(audio.duration / 60)
@@ -68,33 +68,12 @@ const app = {
         }
         // mouse controls
         
-        process.addEventListener('change',function (e) {
-            const seekTime = (audio.duration / 100) * e.target.value;
+        process.addEventListener('change',function () {
+            const seekTime = audio.duration * process.value / 100;
             audio.currentTime = seekTime;
         })
 
-        process.addEventListener('mousedown',function(e) {
-    
-        })
         
-        process.addEventListener('mousemove',function(e) {
-            
-        })
-        
-        process.addEventListener('mouseup',function() {
-            
-        })
-        
-        function seek(e) {
-            if (audio.duration) {
-                null
-            } else {
-                if (app.isSeeking) {
-                    seekSlider.value = e.clientX - seekSlider.offsetLeft
-                    audio.currentTime = audio.duration * (seekSlider.value / 100)
-                }
-            }
-        }
 
     },
     run: function() {
@@ -190,9 +169,6 @@ const app = {
             itemImg.style.height = newItemImgWidth > 0 ? newItemImgWidth + 'px' : 0
             itemImg.style.opacity = newItemImgWidth / itemImgWidth
         }
-
-        //Mousedown mousemove mouseup process
-        
 
         $('.btn-next').onclick = app.next
         $('.btn-previous').onclick = app.previous
