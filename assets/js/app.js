@@ -1,3 +1,96 @@
+const songDatas = [
+    {
+        srcImg:'./assets/img/1.jfif',
+        nameAudio:'Feded',
+        description:'Alan Walker-You were the shadow to my light',
+        srcAudio:'./assets/audios/1.mp3'
+    },
+    {
+        srcImg:'./assets/img/2.jfif',
+        nameAudio:'Robin Hustin',
+        description:'Alan Walker-You were the shadow to my light',
+        srcAudio:'./assets/audios/2.mp3'
+    },
+    {
+        srcImg:'./assets/img/3.jfif',
+        nameAudio:'Linked',
+        description:'Alan Walker-You were the shadow to my light',
+        srcAudio:'./assets/audios/3.mp3'
+    },
+    {
+        srcImg:'./assets/img/4.jfif',
+        nameAudio:'Unknown Brain',
+        description:'Alan Walker-You were the shadow to my light',
+        srcAudio:'./assets/audios/4.mp3'
+    },
+    {
+        srcImg:'./assets/img/5.jfif',
+        nameAudio:'Ngôi Nhà Hoa Hồng',
+        description:'Alan Walker-You were the shadow to my light',
+        srcAudio:'./assets/audios/5.mp3'
+    },
+    {
+        srcImg:'./assets/img/6.jfif',
+        nameAudio:'The Ocean',
+        description:'Alan Walker-You were the shadow to my light',
+        srcAudio:'./assets/audios/6.mp3'
+    },
+    {
+        srcImg:'./assets/img/7.jfif',
+        nameAudio:'Hẹn Yêu',
+        description:'Alan Walker-You were the shadow to my light',
+        srcAudio:'./assets/audios/7.mp3'
+    },
+    {
+        srcImg:'./assets/img/8.jfif',
+        nameAudio:'Feded',
+        description:'Alan Walker-You were the shadow to my light',
+        srcAudio:'./assets/audios/8.mp3'
+    },
+    {
+        srcImg:'./assets/img/9.jfif',
+        nameAudio:'Zedd - Beautiful Now',
+        description:'Alan Walker-You were the shadow to my light',
+        srcAudio:'./assets/audios/9.mp3'
+    },
+    {
+        srcImg:'./assets/img/10.jfif',
+        nameAudio:'Waiting For Love',
+        description:'Alan Walker-You were the shadow to my light',
+        srcAudio:'./assets/audios/10.mp3'
+    },
+]
+
+function render() {
+    return htmls = songDatas.map(song =>{
+        return`
+        <div class="col c-12">
+        <a href="#" class="item song1">
+            <div class="item__img">
+                <img class="img" src="${song.srcImg}" alt="">
+            </div>
+            <div class="item__info">
+                <h2 class="name-audio">${song.nameAudio}</h2>
+                <p>${song.description}</p>
+            </div>
+            <div class="item__icon">
+                <button>
+                    <i class="fas fa-ellipsis-h"></i>
+                </button>
+            </div>
+            <audio id="song" class="song1">
+                <source src="${song.srcAudio}" type="audio/mpeg"> </audio>
+            </audio>
+        </a>
+        </div>
+        `
+    }).join('')
+
+}
+
+document.querySelector('.row').innerHTML = render()
+
+
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
@@ -140,14 +233,8 @@ const app = {
             audio.loop = true
         }
     },
-    randomNumber: function(min, max) {
-        const step1 = max - min + 1
-        const step2 = Math.random() * step1
-        const result = Math.floor(step2) + min 
-        return result
-    },
     random: function() {
-        const randomIndex = app.randomNumber(0, audios.length - 1)
+        const randomIndex = Math.floor(Math.floor(Math.random() * audios.length))
         app.currentIndex = randomIndex
         app.playAudio(app.currentIndex)
         app.displayImgae(app.currentIndex)
@@ -180,8 +267,3 @@ const app = {
 
 app.run()
 app.handleEvent()
-// $('.btn-next').onclick = app.next
-// $('.btn-previous').onclick = app.previous
-// $('.btn-pause').onclick = app.pauseAudio
-// $('.btn-repeat').onclick = app.repeat
-// $('.btn-random').onclick = app.random
